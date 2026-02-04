@@ -1,0 +1,146 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #fff7f3, #f7f2ff);
+  color: #1f2937;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+}
+
+header h1 {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.logout {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+}
+
+main {
+  padding: 32px;
+  max-width: 1400px;
+  margin: auto;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.section {
+  margin-top: 24px;
+}
+
+.card h2 {
+  margin-bottom: 6px;
+}
+
+.card p {
+  color: #6b7280;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.btn {
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+}
+
+.btn.small {
+  max-width: 200px;
+}
+
+.time-btn {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #f9fafb;
+  cursor: pointer;
+}
+
+.placeholder {
+  border: 2px dashed #d1d5db;
+  padding: 40px;
+  text-align: center;
+  color: #9ca3af;
+  border-radius: 14px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  text-align: left;
+}
+
+/* Badges */
+.badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+}
+
+.student { background: #3b82f6; }
+.teacher { background: #a855f7; }
+.active { background: #22c55e; }
+.subject { background: #2563eb; }
+
+.remove {
+  color: red;
+  font-weight: 600;
+  cursor: pointer;
+}

@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #eef2ff, #fdf2f8);
+}
+
+/* Back */
+.back-link {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+}
+
+/* Center */
+.register-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Card */
+.register-card {
+  background: #fff;
+  width: 460px;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+}
+
+/* Icon */
+.icon-box {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #2563eb, #9333ea);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #fff;
+  margin: auto;
+}
+
+/* Headings */
+.register-card h1 {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 28px;
+  color: #4f46e5;
+}
+
+.subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin: 8px 0 28px;
+}
+
+/* Labels */
+label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Inputs */
+.input-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f3f4f6;
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin: 8px 0 18px;
+}
+
+.input-box input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* Role */
+.role-select {
+  display: flex;
+  gap: 12px;
+  margin: 10px 0 25px;
+}
+
+.role {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.role.active {
+  border: 2px solid #2563eb;
+  background: #eef2ff;
+  color: #2563eb;
+}
+
+/* Button */
+.register-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(90deg, #2563eb, #9333ea);
+}
+
+/* Footer */
+.login-text {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.login-text a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}

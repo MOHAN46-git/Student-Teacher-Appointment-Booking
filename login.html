@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | Appointment Booking</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+  <!-- Back -->
+  <a href="index.html" class="back-link">← Back to Home</a>
+
+  <!-- Login Card -->
+  <div class="login-wrapper">
+    <div class="login-card">
+
+      <div class="icon-box">📅</div>
+
+      <h1>Welcome Back</h1>
+      <p class="subtitle">Sign in to your account</p>
+
+      <!-- Email -->
+      <label>Email Address</label>
+      <div class="input-box">
+        <span>✉️</span>
+        <input type="email" placeholder="your.email@example.com">
+      </div>
+
+      <!-- Password -->
+      <label>Password</label>
+      <div class="input-box">
+        <span>🔒</span>
+        <input type="password" placeholder="••••••••">
+      </div>
+
+      <!-- Role -->
+      <label>Login as</label>
+      <div class="role-select">
+        <button class="role active">Student</button>
+        <button class="role">Teacher</button>
+        <button class="role">Admin</button>
+      </div>
+
+      <!-- Button -->
+      <button class="login-btn">Sign In</button>
+
+      <p class="register-text">
+        Don’t have an account?
+        <a href="#">Register here</a>
+      </p>
+
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>

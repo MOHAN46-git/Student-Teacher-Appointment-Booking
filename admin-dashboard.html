@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Appointment Management Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="admin-dashboard.css">
+</head>
+
+<body>
+
+<header>
+  <h1 id="pageTitle">Dashboard</h1>
+  <button class="logout">Logout</button>
+</header>
+
+<main>
+
+  <!-- STUDENT DASHBOARD -->
+  <section id="studentDashboard" class="hidden">
+    <div class="grid-2">
+      <div class="card">
+        <h2>Book an Appointment</h2>
+        <p>Schedule a meeting with your teacher</p>
+
+        <select>
+          <option>Choose a teacher...</option>
+        </select>
+
+        <input type="date">
+
+        <div class="placeholder">
+          Select teacher and date to see available slots
+        </div>
+
+        <button class="btn">Book Appointment</button>
+      </div>
+
+      <div class="card">
+        <h2>My Appointments</h2>
+        <p>Track your scheduled meetings</p>
+
+        <div class="placeholder">
+          No appointments yet
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEACHER DASHBOARD -->
+  <section id="teacherDashboard" class="hidden">
+    <div class="grid-2">
+      <div class="card">
+        <h2>Set Your Availability</h2>
+        <p>Add time slots for student appointments</p>
+
+        <input type="date">
+
+        <div class="grid-3">
+          <button class="time-btn">09:00</button>
+          <button class="time-btn">10:00</button>
+          <button class="time-btn">11:00</button>
+          <button class="time-btn">14:00</button>
+          <button class="time-btn">15:00</button>
+          <button class="time-btn">16:00</button>
+        </div>
+
+        <button class="btn add">+ Add Availability</button>
+      </div>
+
+      <div class="card">
+        <h2>Appointment Requests</h2>
+        <p>Manage student appointment requests</p>
+
+        <div class="placeholder">
+          No pending requests
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMIN DASHBOARD -->
+  <section id="adminDashboard" class="hidden">
+
+    <div class="grid-3">
+      <div class="card stat">
+        <span>3</span>
+        <div>Total Students</div>
+      </div>
+      <div class="card stat">
+        <span>5</span>
+        <div>Total Teachers</div>
+      </div>
+      <div class="card stat">
+        <span>0</span>
+        <div>Total Appointments</div>
+      </div>
+    </div>
+
+    <div class="card section">
+      <h2>User Management</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Alice Johnson</td>
+            <td>alice@example.com</td>
+            <td><span class="badge student">student</span></td>
+            <td><span class="badge active">active</span></td>
+            <td>👁 🚫</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card section">
+      <h2>Add New Teacher</h2>
+
+      <div class="grid-3">
+        <input placeholder="Full Name">
+        <input placeholder="Email Address">
+        <input placeholder="Subject">
+      </div>
+
+      <button class="btn small">Add Teacher</button>
+    </div>
+
+    <div class="card section">
+      <h2>Teacher Database</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>LANGUAGE STAFF - DEEPA.S</td>
+            <td>deepa.s@university.edu</td>
+            <td><span class="badge subject">Language</span></td>
+            <td class="remove">Remove</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card section">
+      <h2>Appointments Monitoring</h2>
+      <div class="placeholder">No appointments in the system</div>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- JS -->
+<script src="admin-dashboard.js"></script>
+</body>
+</html>
