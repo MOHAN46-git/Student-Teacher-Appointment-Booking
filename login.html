@@ -5,21 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sign In — STAB</title>
   <meta name="description" content="Sign in to your Student Teacher Appointment Booking account">
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="login.css">
 </head>
 <body>
 
-  <!-- Background Orbs -->
   <div class="auth-orb auth-orb-1"></div>
   <div class="auth-orb auth-orb-2"></div>
 
-  <!-- Back Link -->
   <a href="index.html" class="back-link">← Back to Home</a>
 
-  <!-- Login Card -->
   <div class="auth-wrapper">
     <div class="auth-card animate-scaleIn">
 
@@ -30,7 +26,6 @@
       <h1>Welcome Back</h1>
       <p class="auth-subtitle">Sign in to your account to continue</p>
 
-      <!-- Email -->
       <div class="form-group">
         <label class="form-label">Email Address</label>
         <div class="input-icon-wrap">
@@ -39,7 +34,6 @@
         </div>
       </div>
 
-      <!-- Password -->
       <div class="form-group">
         <label class="form-label">Password</label>
         <div class="input-icon-wrap">
@@ -48,7 +42,6 @@
         </div>
       </div>
 
-      <!-- Role -->
       <div class="form-group">
         <label class="form-label">Login As</label>
         <div class="role-select">
@@ -58,11 +51,15 @@
         </div>
       </div>
 
-      <!-- Submit -->
       <button class="btn btn-primary btn-lg" id="loginBtn" style="width:100%">
         <span id="loginBtnText">Sign In</span>
         <div class="spinner spinner-sm" id="loginSpinner" style="display:none;border-top-color:#fff;border-color:rgba(255,255,255,0.3);"></div>
       </button>
+
+      <!-- Forgot Password Link -->
+      <p class="forgot-link">
+        <a href="#" id="forgotPasswordLink">🔑 Forgot Password?</a>
+      </p>
 
       <p class="auth-footer">
         Don't have an account? <a href="register.html">Register here</a>
@@ -70,9 +67,30 @@
     </div>
   </div>
 
-  <!-- Toast Container -->
-  <div class="toast-container" id="toastContainer"></div>
+  <!-- Forgot Password Modal -->
+  <div class="modal-overlay" id="forgotModal">
+    <div class="modal-card">
+      <h2>🔑 Reset Password</h2>
+      <p>Enter your email address and we'll send you a password reset link.</p>
 
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <div class="input-icon-wrap">
+          <span class="icon">✉️</span>
+          <input type="email" id="forgotEmail" class="form-input" placeholder="your.email@example.com">
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-lg" id="forgotBtn" style="width:100%">
+        <span id="forgotBtnText">Send Reset Link</span>
+        <div class="spinner spinner-sm" id="forgotSpinner" style="display:none;border-top-color:#fff;border-color:rgba(255,255,255,0.3);"></div>
+      </button>
+
+      <button class="btn btn-ghost" id="closeForgotModal" style="width:100%;margin-top:8px;">Cancel</button>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
   <script type="module" src="login.js"></script>
 </body>
 </html>

@@ -1,14 +1,15 @@
 // ============================================
-// STUDENT DASHBOARD JS — Complete Clean Rewrite
+// STUDENT DASHBOARD JS — v3.0 with Email
 // ============================================
 
 import { db, auth } from "./firebase-config.js";
 import {
-  collection, addDoc, getDocs, query, where, onSnapshot
+  collection, addDoc, getDocs, doc, getDoc, query, where, onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 import {
   onAuthStateChanged, signOut
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+import { notifyTeacherNewAppointment } from "./email-service.js";
 
 // ---- DOM Elements ----
 const welcomeText = document.getElementById("welcomeText");
@@ -59,15 +60,35 @@ dateInput.min = today;
 // ============================================
 // AUTH CHECK
 // ============================================
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location.href = "login.html";
     return;
   }
 
-  // Show welcome name
-  const userName = localStorage.getItem("userName") || user.email;
-  welcomeText.textContent = `Welcome back, ${userName}!`;
+  // Load user data for photo/name
+  try {
+    const { doc: docRef, getDoc } = await import("https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js");
+    const userDoc = await getDoc(docRef(db, "users", user.uid));
+    if (userDoc.exists()) {
+      const ud = userDoc.data();
+      welcomeText.textContent = `Welcome back, ${ud.name}!`;
+      localStorage.setItem("userName", ud.name);
+      // Load profile photo
+      const profileBtn = document.getElementById("profileBtn");
+      if (ud.photoURL) {
+        profileBtn.innerHTML = `<img src="${ud.photoURL}" alt="Profile">`;
+      }
+    }
+  } catch(e) {
+    const userName = localStorage.getItem("userName") || user.email;
+    welcomeText.textContent = `Welcome back, ${userName}!`;
+  }
+
+  // Profile button
+  document.getElementById("profileBtn").addEventListener("click", () => {
+    window.location.href = "profile.html";
+  });
 
   // Load teachers
   loadTeachers();
@@ -193,6 +214,18 @@ bookBtn.addEventListener("click", async () => {
   bookSpinner.style.display = "block";
 
   try {
+    // Get student data for email
+    let studentName = localStorage.getItem("userName") || user.email;
+    let studentDegree = "", studentSection = "";
+    try {
+      const studentDoc = await getDoc(doc(db, "users", user.uid));
+      if (studentDoc.exists()) {
+        const sd = studentDoc.data();
+        studentName = sd.name || studentName;
+        studentDegree = sd.degree || "";
+      }
+    } catch(e) {}
+
     await addDoc(collection(db, "appointments"), {
       studentId: user.uid,
       studentEmail: user.email,
@@ -205,6 +238,23 @@ bookBtn.addEventListener("click", async () => {
     });
 
     showToast("Appointment booked successfully!", "success");
+
+    // Send email to teacher
+    try {
+      const teacherDoc = await getDoc(doc(db, "users", teacherId));
+      if (teacherDoc.exists()) {
+        const td = teacherDoc.data();
+        notifyTeacherNewAppointment({
+          teacherEmail: td.email,
+          teacherName: td.name,
+          studentName,
+          degree: studentDegree,
+          section: studentDegree,
+          date,
+          time: selectedSlot
+        });
+      }
+    } catch(e) { console.log("Email notify skipped"); }
 
     // Reset form
     teacherSelect.value = "";

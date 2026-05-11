@@ -130,6 +130,23 @@
   box-shadow: 0 0 0 3px var(--primary-glow);
 }
 
+/* ---- Forgot Link ---- */
+.forgot-link {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 13px;
+}
+
+.forgot-link a {
+  color: var(--text-muted);
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+.forgot-link a:hover {
+  color: var(--primary);
+}
+
 /* ---- Footer ---- */
 .auth-footer {
   margin-top: 24px;

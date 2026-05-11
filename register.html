@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Register — STAB</title>
-  <meta name="description" content="Create your Student Teacher Appointment Booking account">
-
+  <meta name="description" content="Create your STAB account — Student Teacher Appointment Booking">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="register.css">
@@ -19,67 +18,214 @@
   <!-- Back Link -->
   <a href="index.html" class="back-link">← Back to Home</a>
 
-  <!-- Register Card -->
+  <!-- Registration Wizard -->
   <div class="auth-wrapper">
-    <div class="auth-card animate-scaleIn">
+    <div class="reg-card animate-scaleIn">
 
       <div class="auth-icon">
-        <div class="brand-icon" style="width:52px;height:52px;font-size:22px;">📅</div>
+        <div class="brand-icon" style="width:48px;height:48px;font-size:20px;">📅</div>
       </div>
-
       <h1>Create Account</h1>
       <p class="auth-subtitle">Register to get started with STAB</p>
 
-      <!-- Full Name -->
-      <div class="form-group">
-        <label class="form-label">Full Name</label>
-        <div class="input-icon-wrap">
-          <span class="icon">👤</span>
-          <input type="text" id="regName" class="form-input" placeholder="John Doe">
+      <!-- Step Indicators -->
+      <div class="wizard-steps" id="wizardSteps">
+        <div class="wizard-step active" data-step="1">
+          <span class="step-num">1</span>
+          <span class="step-label">Role</span>
+        </div>
+        <div class="wizard-connector"></div>
+        <div class="wizard-step" data-step="2">
+          <span class="step-num">2</span>
+          <span class="step-label">Personal</span>
+        </div>
+        <div class="wizard-connector"></div>
+        <div class="wizard-step" data-step="3">
+          <span class="step-num">3</span>
+          <span class="step-label">Contact</span>
+        </div>
+        <div class="wizard-connector"></div>
+        <div class="wizard-step" data-step="4">
+          <span class="step-num">4</span>
+          <span class="step-label">College</span>
+        </div>
+        <div class="wizard-connector"></div>
+        <div class="wizard-step" data-step="5">
+          <span class="step-num">5</span>
+          <span class="step-label">More</span>
         </div>
       </div>
 
-      <!-- Email -->
-      <div class="form-group">
-        <label class="form-label">Email Address</label>
-        <div class="input-icon-wrap">
-          <span class="icon">✉️</span>
-          <input type="email" id="regEmail" class="form-input" placeholder="your.email@example.com">
+      <!-- ===== STEP 1: Role ===== -->
+      <div class="wizard-panel active" id="step1">
+        <div class="form-group">
+          <label class="form-label">Register as</label>
+          <div class="role-select" style="display:flex;gap:12px;">
+            <button class="role-btn active" data-role="student" style="flex:1;padding:20px;">
+              <div style="font-size:32px;margin-bottom:8px;">🎓</div>
+              Student
+            </button>
+            <button class="role-btn" data-role="teacher" style="flex:1;padding:20px;">
+              <div style="font-size:32px;margin-bottom:8px;">👨‍🏫</div>
+              Teacher
+            </button>
+          </div>
+        </div>
+        <div class="wizard-nav">
+          <button class="btn btn-primary btn-lg" id="nextBtn1">Next →</button>
         </div>
       </div>
 
-      <!-- Password -->
-      <div class="form-group">
-        <label class="form-label">Password</label>
-        <div class="input-icon-wrap">
-          <span class="icon">🔒</span>
-          <input type="password" id="regPassword" class="form-input" placeholder="Minimum 6 characters">
+      <!-- ===== STEP 2: Personal Details ===== -->
+      <div class="wizard-panel" id="step2">
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:20px;">📋 Personal Details</h3>
+
+        <!-- Profile Photo -->
+        <div class="photo-upload">
+          <div class="photo-preview" id="photoPreview" title="Click to upload photo">📷</div>
+          <label for="photoInput">Upload Profile Photo *</label>
+          <input type="file" id="photoInput" accept="image/*">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Full Name *</label>
+          <input type="text" id="regName" class="form-input" placeholder="Enter your full name">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Date of Birth *</label>
+          <input type="date" id="regDob" class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Gender *</label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" name="gender" id="genderMale" value="Male">
+              <label for="genderMale">♂ Male</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" name="gender" id="genderFemale" value="Female">
+              <label for="genderFemale">♀ Female</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" name="gender" id="genderOther" value="Transgender">
+              <label for="genderOther">⚧ Transgender</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-nav">
+          <button class="btn btn-outline btn-lg prev-btn" data-prev="1">← Back</button>
+          <button class="btn btn-primary btn-lg next-btn" data-next="3">Next →</button>
         </div>
       </div>
 
-      <!-- Confirm Password -->
-      <div class="form-group">
-        <label class="form-label">Confirm Password</label>
-        <div class="input-icon-wrap">
-          <span class="icon">🔒</span>
-          <input type="password" id="regConfirmPassword" class="form-input" placeholder="Re-enter your password">
+      <!-- ===== STEP 3: Contact Details ===== -->
+      <div class="wizard-panel" id="step3">
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:20px;">📞 Contact Details</h3>
+
+        <div class="form-group">
+          <label class="form-label">Mobile Number *</label>
+          <div class="input-icon-wrap">
+            <span class="icon">📱</span>
+            <input type="tel" id="regMobile" class="form-input" placeholder="10-digit mobile number" maxlength="10">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email Address *</label>
+          <div class="input-icon-wrap">
+            <span class="icon">✉️</span>
+            <input type="email" id="regEmail" class="form-input" placeholder="your.email@example.com">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password *</label>
+          <div class="input-icon-wrap">
+            <span class="icon">🔒</span>
+            <input type="password" id="regPassword" class="form-input" placeholder="Minimum 6 characters">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Confirm Password *</label>
+          <div class="input-icon-wrap">
+            <span class="icon">🔒</span>
+            <input type="password" id="regConfirmPassword" class="form-input" placeholder="Re-enter your password">
+          </div>
+        </div>
+
+        <div class="wizard-nav">
+          <button class="btn btn-outline btn-lg prev-btn" data-prev="2">← Back</button>
+          <button class="btn btn-primary btn-lg next-btn" data-next="4">Next →</button>
         </div>
       </div>
 
-      <!-- Role -->
-      <div class="form-group">
-        <label class="form-label">Register As</label>
-        <div class="role-select">
-          <button class="role-btn active" data-role="student">🎓 Student</button>
-          <button class="role-btn" data-role="teacher">👨‍🏫 Teacher</button>
+      <!-- ===== STEP 4: College Details ===== -->
+      <div class="wizard-panel" id="step4">
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:20px;">🏫 College Details</h3>
+
+        <div class="form-group">
+          <label class="form-label">College Name *</label>
+          <input type="text" id="regCollege" class="form-input" placeholder="Enter your college name">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Degree Name & Section *</label>
+          <input type="text" id="regDegree" class="form-input" placeholder="e.g., B.Tech CSE - Section A">
+        </div>
+
+        <div class="form-group" id="rollNumberGroup">
+          <label class="form-label">Roll Number *</label>
+          <input type="text" id="regRollNumber" class="form-input" placeholder="Enter your roll number">
+        </div>
+
+        <div class="form-group" id="staffNumberGroup" style="display:none;">
+          <label class="form-label">Staff Number *</label>
+          <input type="text" id="regStaffNumber" class="form-input" placeholder="Enter your staff number">
+        </div>
+
+        <div class="wizard-nav">
+          <button class="btn btn-outline btn-lg prev-btn" data-prev="3">← Back</button>
+          <button class="btn btn-primary btn-lg next-btn" data-next="5">Next →</button>
         </div>
       </div>
 
-      <!-- Submit -->
-      <button class="btn btn-primary btn-lg" id="registerBtn" style="width:100%">
-        <span id="registerBtnText">Create Account</span>
-        <div class="spinner spinner-sm" id="registerSpinner" style="display:none;border-top-color:#fff;border-color:rgba(255,255,255,0.3);"></div>
-      </button>
+      <!-- ===== STEP 5: Accessibility & Submit ===== -->
+      <div class="wizard-panel" id="step5">
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:20px;">♿ Accessibility</h3>
+
+        <div class="form-group">
+          <label class="form-label">Are you a person with disability?</label>
+          <div class="toggle-group">
+            <button class="toggle-btn active" data-disability="no">No</button>
+            <button class="toggle-btn" data-disability="yes">Yes</button>
+          </div>
+        </div>
+
+        <div class="form-group" id="disabilityTypeGroup" style="display:none;">
+          <label class="form-label">Type of Disability</label>
+          <input type="text" id="regDisabilityType" class="form-input" placeholder="Please specify your disability type">
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Review Summary -->
+        <div id="reviewSummary" style="margin-bottom:20px;">
+          <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">📝 Review Your Details</h3>
+          <div id="summaryContent" style="font-size:13px;color:var(--text-secondary);"></div>
+        </div>
+
+        <div class="wizard-nav" style="flex-direction:column;gap:10px;">
+          <button class="btn btn-primary btn-lg" id="registerBtn" style="width:100%">
+            <span id="registerBtnText">Create Account</span>
+            <div class="spinner spinner-sm" id="registerSpinner" style="display:none;border-top-color:#fff;border-color:rgba(255,255,255,0.3);"></div>
+          </button>
+          <button class="btn btn-outline" id="backToStep4" style="width:100%">← Back</button>
+        </div>
+      </div>
 
       <p class="auth-footer">
         Already have an account? <a href="login.html">Sign in here</a>

@@ -4,26 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Dashboard — STAB</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="admin-dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 </head>
 <body>
 
-  <!-- Header -->
   <header class="dashboard-header">
     <div class="header-left">
       <h1>🛡️ <span class="gradient-text">Admin Dashboard</span></h1>
       <p id="adminName">System Overview</p>
     </div>
     <div class="header-right">
-      <button class="btn btn-ghost" id="themeToggle" title="Toggle dark mode">🌙</button>
+      <div class="header-avatar" id="profileBtn" title="My Profile">👤</div>
+      <button class="btn btn-ghost" id="themeToggle">🌙</button>
       <button class="btn btn-outline btn-sm" id="logoutBtn">↗ Logout</button>
     </div>
   </header>
 
-  <!-- Main Content -->
   <main class="dashboard-body">
 
     <!-- Stats Row -->
@@ -50,12 +49,24 @@
       </div>
     </div>
 
+    <!-- Charts Row -->
+    <div class="charts-grid animate-fadeInUp delay-1">
+      <div class="glass-card chart-card">
+        <h3>📊 Users by Role</h3>
+        <canvas id="usersChart"></canvas>
+      </div>
+      <div class="glass-card chart-card">
+        <h3>📈 Appointments by Status</h3>
+        <canvas id="appointmentsChart"></canvas>
+      </div>
+    </div>
+
     <!-- User Management -->
-    <section class="glass-card admin-section animate-fadeInUp delay-1">
+    <section class="glass-card admin-section animate-fadeInUp delay-2">
       <div class="section-top">
         <div>
           <h2>👥 User Management</h2>
-          <p class="card-sub">All registered users in the system</p>
+          <p class="card-sub">All registered users — click to view details</p>
         </div>
         <div class="filter-group">
           <button class="filter-btn active" data-filter="all">All</button>
@@ -68,21 +79,23 @@
         <table class="data-table" id="usersTable">
           <thead>
             <tr>
+              <th>Photo</th>
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
+              <th>College</th>
               <th>Joined</th>
             </tr>
           </thead>
           <tbody id="usersBody">
-            <tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:32px">Loading users...</td></tr>
+            <tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:32px">Loading...</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
     <!-- Appointments Monitoring -->
-    <section class="glass-card admin-section animate-fadeInUp delay-2">
+    <section class="glass-card admin-section animate-fadeInUp delay-3">
       <div class="section-top">
         <div>
           <h2>📋 Appointments Monitoring</h2>
@@ -93,6 +106,7 @@
           <button class="filter-btn" data-filter="pending" data-target="appt">Pending</button>
           <button class="filter-btn" data-filter="approved" data-target="appt">Approved</button>
           <button class="filter-btn" data-filter="rejected" data-target="appt">Rejected</button>
+          <button class="filter-btn" data-filter="postponed" data-target="appt">Postponed</button>
         </div>
       </div>
 
@@ -108,17 +122,38 @@
             </tr>
           </thead>
           <tbody id="appointmentsBody">
-            <tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:32px">Loading appointments...</td></tr>
+            <tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:32px">Loading...</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
+    <!-- Notification / Email Log -->
+    <section class="glass-card admin-section animate-fadeInUp delay-4">
+      <div class="section-top">
+        <div>
+          <h2>📨 Notification Log</h2>
+          <p class="card-sub">All email notifications sent through the system</p>
+        </div>
+      </div>
+
+      <div id="notificationsContainer">
+        <p style="text-align:center;color:var(--text-muted);padding:32px;">Loading notifications...</p>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Toast Container -->
-  <div class="toast-container" id="toastContainer"></div>
+  <!-- User Detail Modal -->
+  <div class="modal-overlay" id="userDetailModal">
+    <div class="modal-card" style="max-width:520px;">
+      <h2 id="modalUserName">User Details</h2>
+      <div id="modalUserContent" style="margin-top:16px;"></div>
+      <button class="btn btn-ghost" id="closeUserModal" style="width:100%;margin-top:16px;">Close</button>
+    </div>
+  </div>
 
+  <div class="toast-container" id="toastContainer"></div>
   <script type="module" src="admin-dashboard.js"></script>
 </body>
 </html>

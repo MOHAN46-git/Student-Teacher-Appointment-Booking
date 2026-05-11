@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile — STAB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-left">
+      <h1>👤 <span class="gradient-text">My Profile</span></h1>
+      <p id="profileSubtitle">Manage your account</p>
+    </div>
+    <div class="header-right">
+      <button class="btn btn-ghost" id="backToDashboard">← Dashboard</button>
+      <button class="btn btn-ghost" id="themeToggle">🌙</button>
+    </div>
+  </header>
+
+  <main class="dashboard-body">
+    <div class="profile-layout">
+
+      <!-- Profile Card -->
+      <section class="glass-card profile-card animate-fadeInUp">
+        <div class="profile-photo-section">
+          <div class="profile-photo-lg" id="profilePhoto">👤</div>
+          <div class="photo-edit-overlay" id="photoEditOverlay" style="display:none;">
+            <label for="photoInput" class="photo-edit-btn">📷 Change Photo</label>
+            <input type="file" id="photoInput" accept="image/*" style="display:none;">
+          </div>
+          <h2 id="profileName">Loading...</h2>
+          <span class="badge" id="profileRoleBadge">—</span>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Toggle Edit -->
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <h3 style="font-size:16px;font-weight:700;">📋 Personal Details</h3>
+          <button class="btn btn-ghost btn-sm" id="editToggleBtn">✏️ Edit</button>
+        </div>
+
+        <!-- Details View -->
+        <div id="detailsView">
+          <div class="detail-row"><span class="detail-label">Name</span><span class="detail-value" id="dName">—</span></div>
+          <div class="detail-row"><span class="detail-label">Email</span><span class="detail-value" id="dEmail">—</span></div>
+          <div class="detail-row"><span class="detail-label">Mobile</span><span class="detail-value" id="dMobile">—</span></div>
+          <div class="detail-row"><span class="detail-label">Date of Birth</span><span class="detail-value" id="dDob">—</span></div>
+          <div class="detail-row"><span class="detail-label">Gender</span><span class="detail-value" id="dGender">—</span></div>
+          <div class="detail-row"><span class="detail-label">College</span><span class="detail-value" id="dCollege">—</span></div>
+          <div class="detail-row"><span class="detail-label">Degree & Section</span><span class="detail-value" id="dDegree">—</span></div>
+          <div class="detail-row" id="dIdRow"><span class="detail-label" id="dIdLabel">Roll No.</span><span class="detail-value" id="dIdValue">—</span></div>
+          <div class="detail-row" id="dDisabilityRow"><span class="detail-label">Disability</span><span class="detail-value" id="dDisability">—</span></div>
+        </div>
+
+        <!-- Edit Form (hidden by default) -->
+        <div id="editForm" style="display:none;">
+          <div class="form-group"><label class="form-label">Name</label><input type="text" id="editName" class="form-input"></div>
+          <div class="form-group"><label class="form-label">Email (Read Only)</label><input type="email" id="editEmail" class="form-input" disabled style="opacity:0.6;cursor:not-allowed;"></div>
+          <div class="form-group"><label class="form-label">Mobile</label><input type="tel" id="editMobile" class="form-input" maxlength="10"></div>
+          <div class="form-group"><label class="form-label">Date of Birth</label><input type="date" id="editDob" class="form-input"></div>
+          <div class="form-group">
+            <label class="form-label">Gender</label>
+            <div class="radio-group">
+              <div class="radio-option"><input type="radio" name="editGender" id="eg1" value="Male"><label for="eg1">♂ Male</label></div>
+              <div class="radio-option"><input type="radio" name="editGender" id="eg2" value="Female"><label for="eg2">♀ Female</label></div>
+              <div class="radio-option"><input type="radio" name="editGender" id="eg3" value="Transgender"><label for="eg3">⚧ Transgender</label></div>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">College</label><input type="text" id="editCollege" class="form-input"></div>
+          <div class="form-group"><label class="form-label">Degree & Section</label><input type="text" id="editDegree" class="form-input"></div>
+          <div class="form-group" id="editIdGroup"><label class="form-label" id="editIdLabel">Roll Number</label><input type="text" id="editId" class="form-input"></div>
+          <div class="form-group">
+            <label class="form-label">Disability</label>
+            <div class="toggle-group">
+              <button class="toggle-btn" data-dis="no" id="editDisNo">No</button>
+              <button class="toggle-btn" data-dis="yes" id="editDisYes">Yes</button>
+            </div>
+          </div>
+          <div class="form-group" id="editDisTypeGroup" style="display:none;">
+            <label class="form-label">Type of Disability</label>
+            <input type="text" id="editDisType" class="form-input">
+          </div>
+
+          <div style="display:flex;gap:12px;margin-top:20px;">
+            <button class="btn btn-primary btn-lg" id="saveProfileBtn" style="flex:1;">
+              <span id="saveBtnText">Save Changes</span>
+              <div class="spinner spinner-sm" id="saveSpinner" style="display:none;border-top-color:#fff;border-color:rgba(255,255,255,0.3);"></div>
+            </button>
+            <button class="btn btn-outline" id="cancelEditBtn">Cancel</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: App Info -->
+      <div class="side-sections">
+
+        <!-- About STAB -->
+        <section class="glass-card animate-fadeInUp delay-1">
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:12px;">ℹ️ About STAB</h3>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.7;">
+            <strong>Student Teacher Appointment Booking (STAB)</strong> is a modern platform that streamlines scheduling between students and teachers. Book appointments, manage availability, and track status in real-time — all from one place.
+          </p>
+        </section>
+
+        <!-- How to Use -->
+        <section class="glass-card animate-fadeInUp delay-2">
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:12px;">📖 How to Use</h3>
+          <div class="guide-steps">
+            <div class="guide-step"><span class="guide-num">1</span><span>Register as a Student or Teacher</span></div>
+            <div class="guide-step"><span class="guide-num">2</span><span>Students: Select a teacher, pick a date & time, and book</span></div>
+            <div class="guide-step"><span class="guide-num">3</span><span>Teachers: Set availability, approve/reject/postpone requests</span></div>
+            <div class="guide-step"><span class="guide-num">4</span><span>Get email notifications for appointment updates</span></div>
+            <div class="guide-step"><span class="guide-num">5</span><span>View & edit your profile anytime</span></div>
+          </div>
+        </section>
+
+        <!-- Terms & Conditions -->
+        <section class="glass-card animate-fadeInUp delay-3">
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:12px;">📜 Terms & Conditions</h3>
+          <div class="terms-content">
+            <p>1. Users must provide accurate information during registration.</p>
+            <p>2. Profile photos must be appropriate. Inappropriate content will lead to account suspension.</p>
+            <p>3. Appointments must be booked at least 24 hours in advance.</p>
+            <p>4. Teachers reserve the right to approve, reject, or postpone appointments.</p>
+            <p>5. Personal data is stored securely via Firebase and will not be shared with third parties.</p>
+            <p>6. Users must not misuse the platform for any purpose other than academic appointments.</p>
+            <p>7. The admin reserves the right to modify or remove any user account.</p>
+          </div>
+        </section>
+
+        <!-- Logout -->
+        <button class="btn btn-outline btn-lg" id="logoutBtn" style="width:100%;margin-top:8px;">
+          ↗ Logout
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script type="module" src="profile.js"></script>
+</body>
+</html>
