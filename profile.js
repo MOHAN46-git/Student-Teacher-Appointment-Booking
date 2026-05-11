@@ -2,10 +2,9 @@
 // PROFILE.JS — View & Edit Profile
 // ============================================
 
-import { db, auth, storage } from "./firebase-config.js";
+import { db, auth, compressImage } from "./firebase-config.js";
 import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
-import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-storage.js";
 
 // ---- Toast ----
 function showToast(msg, type = "info") {
@@ -194,15 +193,12 @@ document.getElementById("photoInput").addEventListener("change", async (e) => {
   if (!file || !file.type.startsWith("image/")) return;
 
   try {
-    const storageRef = ref(storage, `profile-photos/${currentUser.uid}`);
-    await uploadBytes(storageRef, file);
-    const url = await getDownloadURL(storageRef);
+    const base64 = await compressImage(file, 200, 0.7);
+    await updateDoc(doc(db, "users", currentUser.uid), { photoURL: base64 });
 
-    await updateDoc(doc(db, "users", currentUser.uid), { photoURL: url });
-
-    document.getElementById("profilePhoto").innerHTML = `<img src="${url}" alt="Profile">`;
-    userData.photoURL = url;
-    localStorage.setItem("userPhoto", url);
+    document.getElementById("profilePhoto").innerHTML = `<img src="${base64}" alt="Profile">`;
+    userData.photoURL = base64;
+    localStorage.setItem("userPhoto", base64);
     showToast("Photo updated!", "success");
   } catch (error) {
     showToast("Failed to upload photo", "error");

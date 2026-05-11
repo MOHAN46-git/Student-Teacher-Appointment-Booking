@@ -2,10 +2,9 @@
 // REGISTER.JS — Multi-Step Registration Wizard
 // ============================================
 
-import { db, auth, storage } from "./firebase-config.js";
+import { db, auth, compressImage } from "./firebase-config.js";
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
 import { setDoc, doc } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
-import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-storage.js";
 
 // ---- Toast ----
 function showToast(msg, type = "info") {
@@ -249,12 +248,10 @@ async function handleRegister() {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const uid = userCredential.user.uid;
 
-    // 2. Upload profile photo to Firebase Storage
+    // 2. Compress photo to Base64 (stored in Firestore, no Storage needed)
     let photoURL = "";
     if (profilePhotoFile) {
-      const storageRef = ref(storage, `profile-photos/${uid}`);
-      await uploadBytes(storageRef, profilePhotoFile);
-      photoURL = await getDownloadURL(storageRef);
+      photoURL = await compressImage(profilePhotoFile, 200, 0.7);
     }
 
     // 3. Build user data
