@@ -3,58 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login | Appointment Booking</title>
+  <title>Sign In — STAB</title>
+  <meta name="description" content="Sign in to your Student Teacher Appointment Booking account">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="login.css">
 </head>
 <body>
 
-  <!-- Back -->
+  <!-- Background Orbs -->
+  <div class="auth-orb auth-orb-1"></div>
+  <div class="auth-orb auth-orb-2"></div>
+
+  <!-- Back Link -->
   <a href="index.html" class="back-link">← Back to Home</a>
 
   <!-- Login Card -->
-  <div class="login-wrapper">
-    <div class="login-card">
+  <div class="auth-wrapper">
+    <div class="auth-card animate-scaleIn">
 
-      <div class="icon-box">📅</div>
+      <div class="auth-icon">
+        <div class="brand-icon" style="width:52px;height:52px;font-size:22px;">📅</div>
+      </div>
 
       <h1>Welcome Back</h1>
-      <p class="subtitle">Sign in to your account</p>
+      <p class="auth-subtitle">Sign in to your account to continue</p>
 
       <!-- Email -->
-      <label>Email Address</label>
-      <div class="input-box">
-        <span>✉️</span>
-        <input type="email" placeholder="your.email@example.com">
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <div class="input-icon-wrap">
+          <span class="icon">✉️</span>
+          <input type="email" id="loginEmail" class="form-input" placeholder="your.email@example.com">
+        </div>
       </div>
 
       <!-- Password -->
-      <label>Password</label>
-      <div class="input-box">
-        <span>🔒</span>
-        <input type="password" placeholder="••••••••">
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <div class="input-icon-wrap">
+          <span class="icon">🔒</span>
+          <input type="password" id="loginPassword" class="form-input" placeholder="••••••••">
+        </div>
       </div>
 
       <!-- Role -->
-      <label>Login as</label>
-      <div class="role-select">
-        <button class="role active">Student</button>
-        <button class="role">Teacher</button>
-        <button class="role">Admin</button>
+      <div class="form-group">
+        <label class="form-label">Login As</label>
+        <div class="role-select">
+          <button class="role-btn active" data-role="student">🎓 Student</button>
+          <button class="role-btn" data-role="teacher">👨‍🏫 Teacher</button>
+          <button class="role-btn" data-role="admin">🛡️ Admin</button>
+        </div>
       </div>
 
-      <!-- Button -->
-      <button class="login-btn">Sign In</button>
+      <!-- Submit -->
+      <button class="btn btn-primary btn-lg" id="loginBtn" style="width:100%">
+        <span id="loginBtnText">Sign In</span>
+        <div class="spinner spinner-sm" id="loginSpinner" style="display:none;border-top-color:#fff;border-color:rgba(255,255,255,0.3);"></div>
+      </button>
 
-      <p class="register-text">
-        Don’t have an account?
-        <a href="#">Register here</a>
+      <p class="auth-footer">
+        Don't have an account? <a href="register.html">Register here</a>
       </p>
-
     </div>
   </div>
 
-  <script src="login.js"></script>
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script type="module" src="login.js"></script>
 </body>
 </html>

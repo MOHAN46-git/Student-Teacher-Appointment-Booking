@@ -2,176 +2,123 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Appointment Management Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — STAB</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="admin-dashboard.css">
 </head>
-
 <body>
 
-<header>
-  <h1 id="pageTitle">Dashboard</h1>
-  <button class="logout">Logout</button>
-</header>
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-left">
+      <h1>🛡️ <span class="gradient-text">Admin Dashboard</span></h1>
+      <p id="adminName">System Overview</p>
+    </div>
+    <div class="header-right">
+      <button class="btn btn-ghost" id="themeToggle" title="Toggle dark mode">🌙</button>
+      <button class="btn btn-outline btn-sm" id="logoutBtn">↗ Logout</button>
+    </div>
+  </header>
 
-<main>
+  <!-- Main Content -->
+  <main class="dashboard-body">
 
-  <!-- STUDENT DASHBOARD -->
-  <section id="studentDashboard" class="hidden">
-    <div class="grid-2">
-      <div class="card">
-        <h2>Book an Appointment</h2>
-        <p>Schedule a meeting with your teacher</p>
-
-        <select>
-          <option>Choose a teacher...</option>
-        </select>
-
-        <input type="date">
-
-        <div class="placeholder">
-          Select teacher and date to see available slots
-        </div>
-
-        <button class="btn">Book Appointment</button>
+    <!-- Stats Row -->
+    <div class="stats-grid animate-fadeInUp">
+      <div class="stat-card">
+        <div class="stat-icon" style="background:var(--info-bg)">🎓</div>
+        <div class="stat-value" id="totalStudents">—</div>
+        <div class="stat-label">Total Students</div>
       </div>
-
-      <div class="card">
-        <h2>My Appointments</h2>
-        <p>Track your scheduled meetings</p>
-
-        <div class="placeholder">
-          No appointments yet
-        </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:var(--accent-glow)">👨‍🏫</div>
+        <div class="stat-value" id="totalTeachers">—</div>
+        <div class="stat-label">Total Teachers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:var(--success-bg)">📅</div>
+        <div class="stat-value" id="totalAppointments">—</div>
+        <div class="stat-label">Total Appointments</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:var(--warning-bg)">⏳</div>
+        <div class="stat-value" id="pendingCount">—</div>
+        <div class="stat-label">Pending Requests</div>
       </div>
     </div>
-  </section>
 
-  <!-- TEACHER DASHBOARD -->
-  <section id="teacherDashboard" class="hidden">
-    <div class="grid-2">
-      <div class="card">
-        <h2>Set Your Availability</h2>
-        <p>Add time slots for student appointments</p>
-
-        <input type="date">
-
-        <div class="grid-3">
-          <button class="time-btn">09:00</button>
-          <button class="time-btn">10:00</button>
-          <button class="time-btn">11:00</button>
-          <button class="time-btn">14:00</button>
-          <button class="time-btn">15:00</button>
-          <button class="time-btn">16:00</button>
+    <!-- User Management -->
+    <section class="glass-card admin-section animate-fadeInUp delay-1">
+      <div class="section-top">
+        <div>
+          <h2>👥 User Management</h2>
+          <p class="card-sub">All registered users in the system</p>
         </div>
-
-        <button class="btn add">+ Add Availability</button>
-      </div>
-
-      <div class="card">
-        <h2>Appointment Requests</h2>
-        <p>Manage student appointment requests</p>
-
-        <div class="placeholder">
-          No pending requests
+        <div class="filter-group">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="student">Students</button>
+          <button class="filter-btn" data-filter="teacher">Teachers</button>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ADMIN DASHBOARD -->
-  <section id="adminDashboard" class="hidden">
-
-    <div class="grid-3">
-      <div class="card stat">
-        <span>3</span>
-        <div>Total Students</div>
+      <div class="table-wrap">
+        <table class="data-table" id="usersTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Joined</th>
+            </tr>
+          </thead>
+          <tbody id="usersBody">
+            <tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:32px">Loading users...</td></tr>
+          </tbody>
+        </table>
       </div>
-      <div class="card stat">
-        <span>5</span>
-        <div>Total Teachers</div>
-      </div>
-      <div class="card stat">
-        <span>0</span>
-        <div>Total Appointments</div>
-      </div>
-    </div>
+    </section>
 
-    <div class="card section">
-      <h2>User Management</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Alice Johnson</td>
-            <td>alice@example.com</td>
-            <td><span class="badge student">student</span></td>
-            <td><span class="badge active">active</span></td>
-            <td>👁 🚫</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="card section">
-      <h2>Add New Teacher</h2>
-
-      <div class="grid-3">
-        <input placeholder="Full Name">
-        <input placeholder="Email Address">
-        <input placeholder="Subject">
+    <!-- Appointments Monitoring -->
+    <section class="glass-card admin-section animate-fadeInUp delay-2">
+      <div class="section-top">
+        <div>
+          <h2>📋 Appointments Monitoring</h2>
+          <p class="card-sub">Overview of all appointment activity</p>
+        </div>
+        <div class="filter-group">
+          <button class="filter-btn active" data-filter="all" data-target="appt">All</button>
+          <button class="filter-btn" data-filter="pending" data-target="appt">Pending</button>
+          <button class="filter-btn" data-filter="approved" data-target="appt">Approved</button>
+          <button class="filter-btn" data-filter="rejected" data-target="appt">Rejected</button>
+        </div>
       </div>
 
-      <button class="btn small">Add Teacher</button>
-    </div>
+      <div class="table-wrap">
+        <table class="data-table" id="appointmentsTable">
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Teacher</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="appointmentsBody">
+            <tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:32px">Loading appointments...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-    <div class="card section">
-      <h2>Teacher Database</h2>
+  </main>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Subject</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>LANGUAGE STAFF - DEEPA.S</td>
-            <td>deepa.s@university.edu</td>
-            <td><span class="badge subject">Language</span></td>
-            <td class="remove">Remove</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
 
-    <div class="card section">
-      <h2>Appointments Monitoring</h2>
-      <div class="placeholder">No appointments in the system</div>
-    </div>
-
-  </section>
-
-</main>
-
-<!-- JS -->
-<script src="admin-dashboard.js"></script>
+  <script type="module" src="admin-dashboard.js"></script>
 </body>
 </html>

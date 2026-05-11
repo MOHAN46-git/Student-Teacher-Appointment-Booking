@@ -3,71 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Register | Appointment Booking</title>
+  <title>Register — STAB</title>
+  <meta name="description" content="Create your Student Teacher Appointment Booking account">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="register.css">
 </head>
 <body>
 
-  <!-- Back -->
+  <!-- Background Orbs -->
+  <div class="auth-orb auth-orb-1"></div>
+  <div class="auth-orb auth-orb-2"></div>
+
+  <!-- Back Link -->
   <a href="index.html" class="back-link">← Back to Home</a>
 
   <!-- Register Card -->
-  <div class="register-wrapper">
-    <div class="register-card">
+  <div class="auth-wrapper">
+    <div class="auth-card animate-scaleIn">
 
-      <div class="icon-box">📅</div>
+      <div class="auth-icon">
+        <div class="brand-icon" style="width:52px;height:52px;font-size:22px;">📅</div>
+      </div>
 
       <h1>Create Account</h1>
-      <p class="subtitle">Register to get started</p>
+      <p class="auth-subtitle">Register to get started with STAB</p>
 
       <!-- Full Name -->
-      <label>Full Name</label>
-      <div class="input-box">
-        <span>👤</span>
-        <input type="text" placeholder="John Doe">
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <div class="input-icon-wrap">
+          <span class="icon">👤</span>
+          <input type="text" id="regName" class="form-input" placeholder="John Doe">
+        </div>
       </div>
 
       <!-- Email -->
-      <label>Email Address</label>
-      <div class="input-box">
-        <span>✉️</span>
-        <input type="email" placeholder="your.email@example.com">
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <div class="input-icon-wrap">
+          <span class="icon">✉️</span>
+          <input type="email" id="regEmail" class="form-input" placeholder="your.email@example.com">
+        </div>
       </div>
 
       <!-- Password -->
-      <label>Password</label>
-      <div class="input-box">
-        <span>🔒</span>
-        <input type="password" placeholder="••••••••">
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <div class="input-icon-wrap">
+          <span class="icon">🔒</span>
+          <input type="password" id="regPassword" class="form-input" placeholder="Minimum 6 characters">
+        </div>
       </div>
 
       <!-- Confirm Password -->
-      <label>Confirm Password</label>
-      <div class="input-box">
-        <span>🔒</span>
-        <input type="password" placeholder="••••••••">
+      <div class="form-group">
+        <label class="form-label">Confirm Password</label>
+        <div class="input-icon-wrap">
+          <span class="icon">🔒</span>
+          <input type="password" id="regConfirmPassword" class="form-input" placeholder="Re-enter your password">
+        </div>
       </div>
 
       <!-- Role -->
-      <label>Register as</label>
-      <div class="role-select">
-        <button class="role active">Student</button>
-        <button class="role">Teacher</button>
+      <div class="form-group">
+        <label class="form-label">Register As</label>
+        <div class="role-select">
+          <button class="role-btn active" data-role="student">🎓 Student</button>
+          <button class="role-btn" data-role="teacher">👨‍🏫 Teacher</button>
+        </div>
       </div>
 
-      <!-- Button -->
-      <button class="register-btn">Create Account</button>
+      <!-- Submit -->
+      <button class="btn btn-primary btn-lg" id="registerBtn" style="width:100%">
+        <span id="registerBtnText">Create Account</span>
+        <div class="spinner spinner-sm" id="registerSpinner" style="display:none;border-top-color:#fff;border-color:rgba(255,255,255,0.3);"></div>
+      </button>
 
-      <p class="login-text">
-        Already have an account?
-        <a href="login.html">Login here</a>
+      <p class="auth-footer">
+        Already have an account? <a href="login.html">Sign in here</a>
       </p>
-
     </div>
   </div>
 
-  <script src="register.js"></script>
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script type="module" src="register.js"></script>
 </body>
 </html>

@@ -3,69 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Student Dashboard</title>
+  <title>Student Dashboard — STAB</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="student-dashboard.css">
 </head>
 <body>
 
   <!-- Header -->
-  <header class="top-bar">
-    <div>
-      <h1>Student Dashboard</h1>
-      <p>Welcome back, ncas2427se1316!</p>
+  <header class="dashboard-header">
+    <div class="header-left">
+      <h1>🎓 <span class="gradient-text">Student Dashboard</span></h1>
+      <p id="welcomeText">Welcome back!</p>
     </div>
-
-    <div class="header-actions">
-      <button class="icon-btn">🌙</button>
-      <button class="logout-btn">↗ Logout</button>
+    <div class="header-right">
+      <button class="btn btn-ghost" id="themeToggle" title="Toggle dark mode">🌙</button>
+      <button class="btn btn-outline btn-sm" id="logoutBtn">↗ Logout</button>
     </div>
   </header>
 
-  <!-- Main -->
-  <main class="dashboard">
+  <!-- Main Content -->
+  <main class="dashboard-body">
+    <div class="dashboard-grid">
 
-    <!-- Left Card -->
-    <section class="card">
-      <h2>Book an Appointment</h2>
-      <p class="sub">Schedule a meeting with your teacher</p>
+      <!-- LEFT: Book Appointment -->
+      <section class="glass-card animate-fadeInUp">
+        <div class="card-header">
+          <h2>📅 Book an Appointment</h2>
+          <p class="card-sub">Schedule a meeting with your teacher</p>
+        </div>
 
-      <label>Select Teacher</label>
-      <select>
-        <option>Choose a teacher...</option>
-        <option>Dr. Kumar</option>
-        <option>Ms. Priya</option>
-      </select>
+        <div class="form-group">
+          <label class="form-label">Select Teacher</label>
+          <select class="form-input" id="teacherSelect">
+            <option value="">Choose a teacher...</option>
+          </select>
+        </div>
 
-      <label>Select Date</label>
-      <div class="date-input">
-        <span>📅</span>
-        <input type="text" placeholder="dd-mm-yyyy">
-      </div>
+        <div class="form-group">
+          <label class="form-label">Select Date</label>
+          <input type="date" class="form-input" id="dateInput">
+        </div>
 
-      <label>Available Time Slots</label>
-      <div class="empty-slot">
-        Select teacher and date to see available slots
-      </div>
+        <div class="form-group">
+          <label class="form-label">Available Time Slots</label>
+          <div class="slots-grid" id="slotsContainer">
+            <div class="empty-state" style="padding:24px">
+              <p>Select a teacher and date to view available slots</p>
+            </div>
+          </div>
+        </div>
 
-      <button class="primary-btn">Book Appointment</button>
-    </section>
+        <button class="btn btn-primary btn-lg" id="bookBtn" style="width:100%">
+          <span id="bookBtnText">Book Appointment</span>
+          <div class="spinner spinner-sm" id="bookSpinner" style="display:none;border-top-color:#fff;border-color:rgba(255,255,255,0.3);"></div>
+        </button>
+      </section>
 
-    <!-- Right Card -->
-    <section class="card">
-      <h2>My Appointments</h2>
-      <p class="sub">Track your scheduled meetings</p>
+      <!-- RIGHT: My Appointments -->
+      <section class="glass-card animate-fadeInUp delay-1">
+        <div class="card-header">
+          <h2>📋 My Appointments</h2>
+          <p class="card-sub">Track your scheduled meetings</p>
+        </div>
 
-      <div class="empty-appointments">
-        <div class="calendar-icon">📅</div>
-        <h3>No appointments yet</h3>
-        <p>Book your first appointment to get started</p>
-      </div>
-    </section>
+        <div id="appointmentsContainer">
+          <div class="empty-state">
+            <div class="empty-icon">📅</div>
+            <h3>No appointments yet</h3>
+            <p>Book your first appointment to get started</p>
+          </div>
+        </div>
+      </section>
 
+    </div>
   </main>
 
-  <script src="student-dashboard.js"></script>
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script type="module" src="student-dashboard.js"></script>
 </body>
 </html>

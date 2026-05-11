@@ -3,142 +3,222 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Student Teacher Appointment Booking</title>
+  <title>STAB — Student Teacher Appointment Booking</title>
+  <meta name="description" content="A modern platform connecting students and teachers for seamless appointment scheduling and management.">
 
   <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="Index.css">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
   <!-- ===== NAVBAR ===== -->
-  <header class="navbar">
-    <div class="logo">
-      📅 <span>Student Teacher Appointment Booking</span>
+  <header class="navbar" id="navbar">
+    <div class="nav-brand">
+      <div class="brand-icon">📅</div>
+      <span>STAB</span>
     </div>
 
-    <nav class="nav-links">
-      <a href="#">Student</a>
-      <a href="#">Teacher</a>
-      <a href="#">Admin</a>
-      <button class="btn-outline">Register</button>
-      <button class="btn-primary">Login</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#roles">Roles</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#features">Features</a>
+      <div class="nav-actions">
+        <button class="btn btn-outline btn-sm" onclick="location.href='register.html'">Register</button>
+        <button class="btn btn-primary btn-sm" onclick="location.href='login.html'">Login</button>
+      </div>
     </nav>
-  </header>
 
-  <!-- ===== DEMO BAR ===== -->
-  <section class="demo-bar">
-    <p>
-      ℹ️ Demo Mode: Teacher access requires registered email from database.
-      <a href="#">View Demo Accounts</a>
-    </p>
-  </section>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
 
   <!-- ===== HERO SECTION ===== -->
   <section class="hero">
-    <span class="pill">🔔 Streamline your academic appointments</span>
+    <!-- Background Orbs -->
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
 
-    <h1>
-      <span class="grad-1">Student Teacher</span><br/>
-      <span class="grad-2">Appointment Booking</span>
-    </h1>
+    <div class="hero-content">
+      <span class="hero-pill animate-fadeInUp">
+        <span class="pill-dot"></span>
+        Streamline your academic appointments
+      </span>
 
-    <p class="hero-desc">
-      A modern, efficient platform connecting students and teachers for
-      seamless appointment scheduling and management.
-    </p>
+      <h1 class="animate-fadeInUp delay-1">
+        <span class="gradient-text-hero">Student Teacher</span><br/>
+        <span class="gradient-text">Appointment Booking</span>
+      </h1>
 
-    <div class="hero-buttons">
-      <button class="btn-primary big">Book an Appointment →</button>
-      <button class="btn-outline big">Get Started</button>
+      <p class="hero-desc animate-fadeInUp delay-2">
+        A modern, efficient platform connecting students and teachers for
+        seamless appointment scheduling, real-time status tracking, and effortless management.
+      </p>
+
+      <div class="hero-buttons animate-fadeInUp delay-3">
+        <button class="btn btn-primary btn-lg" onclick="location.href='register.html'">
+          Get Started <span class="btn-arrow">→</span>
+        </button>
+        <button class="btn btn-outline btn-lg" onclick="location.href='login.html'">
+          Sign In
+        </button>
+      </div>
+
+      <div class="hero-stats animate-fadeInUp delay-4">
+        <div class="hero-stat">
+          <span class="hero-stat-value">100+</span>
+          <span class="hero-stat-label">Active Users</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">500+</span>
+          <span class="hero-stat-label">Appointments</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">98%</span>
+          <span class="hero-stat-label">Satisfaction</span>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ===== ROLE SECTION ===== -->
-  <section class="roles">
-    <h2>Choose Your Role</h2>
-    <p class="subtitle">Access features tailored to your needs</p>
+  <section class="roles" id="roles">
+    <div class="section-header">
+      <span class="section-pill">Roles</span>
+      <h2>Choose Your <span class="gradient-text">Role</span></h2>
+      <p>Access features tailored to your needs</p>
+    </div>
 
     <div class="role-cards">
-
-      <div class="card">
-        <div class="icon blue">🎓</div>
+      <div class="role-card animate-on-scroll">
+        <div class="role-icon blue">🎓</div>
         <h3>Student</h3>
-        <p>Book appointments with teachers and track your scheduled meetings.</p>
+        <p>Book appointments with teachers and track your scheduled meetings effortlessly.</p>
         <ul>
-          <li>✔ Book appointments</li>
-          <li>✔ Track status</li>
-          <li>✔ View history</li>
+          <li><span class="check">✓</span> Book appointments</li>
+          <li><span class="check">✓</span> Track status in real-time</li>
+          <li><span class="check">✓</span> View appointment history</li>
         </ul>
-        <button class="btn-gradient">Access Dashboard →</button>
+        <button class="btn btn-primary" onclick="location.href='login.html'" style="width:100%">Access Dashboard →</button>
       </div>
 
-      <div class="card">
-        <div class="icon purple">👤</div>
+      <div class="role-card featured animate-on-scroll">
+        <div class="featured-badge">Popular</div>
+        <div class="role-icon purple">👨‍🏫</div>
         <h3>Teacher</h3>
         <p>Manage your availability and approve student appointment requests.</p>
         <ul>
-          <li>✔ Set availability</li>
-          <li>✔ Manage requests</li>
-          <li>✔ Track meetings</li>
+          <li><span class="check">✓</span> Set availability slots</li>
+          <li><span class="check">✓</span> Manage requests</li>
+          <li><span class="check">✓</span> Track all meetings</li>
         </ul>
-        <button class="btn-gradient">Access Dashboard →</button>
+        <button class="btn btn-primary" onclick="location.href='login.html'" style="width:100%">Access Dashboard →</button>
       </div>
 
-      <div class="card">
-        <div class="icon orange">🛡️</div>
+      <div class="role-card animate-on-scroll">
+        <div class="role-icon orange">🛡️</div>
         <h3>Admin</h3>
-        <p>Monitor system activity and manage users across the platform.</p>
+        <p>Monitor system activity and manage users across the entire platform.</p>
         <ul>
-          <li>✔ User management</li>
-          <li>✔ System overview</li>
-          <li>✔ Analytics</li>
+          <li><span class="check">✓</span> User management</li>
+          <li><span class="check">✓</span> System analytics</li>
+          <li><span class="check">✓</span> Full oversight</li>
         </ul>
-        <button class="btn-gradient">Access Dashboard →</button>
+        <button class="btn btn-primary" onclick="location.href='login.html'" style="width:100%">Access Dashboard →</button>
       </div>
-
     </div>
   </section>
 
   <!-- ===== HOW IT WORKS ===== -->
-  <section class="steps">
-    <h2>How It Works</h2>
-    <p class="subtitle">Simple steps to book your appointment</p>
+  <section class="how-it-works" id="how-it-works">
+    <div class="section-header">
+      <span class="section-pill">Process</span>
+      <h2>How It <span class="gradient-text">Works</span></h2>
+      <p>Simple steps to book your appointment</p>
+    </div>
 
-    <div class="step-cards">
-
-      <div class="step">
-        <span class="step-num">1</span>
-        <div class="step-icon">👤</div>
+    <div class="steps-grid">
+      <div class="step-card animate-on-scroll">
+        <div class="step-number">1</div>
+        <div class="step-icon-wrap"><span>👤</span></div>
         <h3>Register / Login</h3>
-        <p>Create your account or sign in to get started</p>
+        <p>Create your account or sign in to get started with the platform</p>
       </div>
 
-      <div class="step">
-        <span class="step-num">2</span>
-        <div class="step-icon">📅</div>
+      <div class="step-connector"><div class="connector-line"></div></div>
+
+      <div class="step-card animate-on-scroll">
+        <div class="step-number">2</div>
+        <div class="step-icon-wrap"><span>📅</span></div>
         <h3>Choose Teacher & Time</h3>
-        <p>Select your preferred teacher and available time slot</p>
+        <p>Select your preferred teacher and pick from available time slots</p>
       </div>
 
-      <div class="step">
-        <span class="step-num">3</span>
-        <div class="step-icon">✅</div>
+      <div class="step-connector"><div class="connector-line"></div></div>
+
+      <div class="step-card animate-on-scroll">
+        <div class="step-number">3</div>
+        <div class="step-icon-wrap"><span>✅</span></div>
         <h3>Get Approval & Meet</h3>
-        <p>Wait for teacher approval and attend your appointment</p>
+        <p>Wait for teacher approval and attend your scheduled appointment</p>
       </div>
+    </div>
+  </section>
 
+  <!-- ===== FEATURES ===== -->
+  <section class="features" id="features">
+    <div class="section-header">
+      <span class="section-pill">Features</span>
+      <h2>Why Choose <span class="gradient-text">STAB</span>?</h2>
+      <p>Built with modern technologies for the best experience</p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card animate-on-scroll">
+        <div class="feature-icon">⚡</div>
+        <h3>Real-Time Updates</h3>
+        <p>Get instant notifications when appointments are approved or rejected</p>
+      </div>
+      <div class="feature-card animate-on-scroll">
+        <div class="feature-icon">🔒</div>
+        <h3>Secure Authentication</h3>
+        <p>Firebase-powered authentication keeps your account safe and secure</p>
+      </div>
+      <div class="feature-card animate-on-scroll">
+        <div class="feature-icon">🌙</div>
+        <h3>Dark Mode</h3>
+        <p>Easy on the eyes with a beautiful dark mode theme toggle</p>
+      </div>
+      <div class="feature-card animate-on-scroll">
+        <div class="feature-icon">📱</div>
+        <h3>Fully Responsive</h3>
+        <p>Access from any device — desktop, tablet, or mobile phone</p>
+      </div>
     </div>
   </section>
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
-    <p>📅 Student Teacher Appointment Booking</p>
-    <p>© 2026 • Developed by Mohan</p>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="brand-icon">📅</div>
+        <span>STAB</span>
+      </div>
+      <p>Student Teacher Appointment Booking</p>
+    </div>
+    <p class="footer-copy">© 2026 • Developed by <strong>Mohan</strong></p>
   </footer>
 
-  <script src="Index.js"></script>
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="index.js"></script>
 </body>
 </html>

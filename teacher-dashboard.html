@@ -3,73 +3,92 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Teacher Dashboard</title>
+  <title>Teacher Dashboard — STAB</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="teacher-dashboard.css">
 </head>
 <body>
 
   <!-- Header -->
-  <header class="top-bar">
-    <div>
-      <h1>Teacher Dashboard</h1>
-      <p>Welcome back, LANGUAGE STAFF - DEEPA.S!</p>
+  <header class="dashboard-header">
+    <div class="header-left">
+      <h1>👨‍🏫 <span class="gradient-text">Teacher Dashboard</span></h1>
+      <p id="teacherName">Welcome back...</p>
     </div>
-
-    <div class="header-actions">
-      <button class="icon-btn">🌙</button>
-      <button class="logout-btn">↗ Logout</button>
+    <div class="header-right">
+      <button class="btn btn-ghost" id="themeToggle" title="Toggle dark mode">🌙</button>
+      <button class="btn btn-outline btn-sm" id="logoutBtn">↗ Logout</button>
     </div>
   </header>
 
-  <!-- Main -->
-  <main class="dashboard">
+  <!-- Main Content -->
+  <main class="dashboard-body">
+    <div class="dashboard-grid">
 
-    <!-- Left Card -->
-    <section class="card">
-      <h2>Set Your Availability</h2>
-      <p class="sub">Add time slots for student appointments</p>
+      <!-- LEFT: Set Availability -->
+      <section class="glass-card animate-fadeInUp">
+        <div class="card-header">
+          <h2>📅 Set Your Availability</h2>
+          <p class="card-sub">Add time slots for student appointments</p>
+        </div>
 
-      <label>Select Date</label>
-      <div class="date-input">
-        <span>📅</span>
-        <input type="text" placeholder="dd-mm-yyyy">
-      </div>
+        <div class="form-group">
+          <label class="form-label">Select Date</label>
+          <input type="date" class="form-input" id="availDate">
+        </div>
 
-      <label>Select Time Slots</label>
+        <div class="form-group">
+          <label class="form-label">Select Time Slots</label>
+          <div class="time-slots-grid" id="timeSlots">
+            <button class="slot-btn" data-time="09:00 AM">🕘 09:00</button>
+            <button class="slot-btn" data-time="10:00 AM">🕙 10:00</button>
+            <button class="slot-btn" data-time="11:00 AM">🕚 11:00</button>
+            <button class="slot-btn" data-time="12:00 PM">🕛 12:00</button>
+            <button class="slot-btn" data-time="02:00 PM">🕑 14:00</button>
+            <button class="slot-btn" data-time="03:00 PM">🕒 15:00</button>
+            <button class="slot-btn" data-time="04:00 PM">🕓 16:00</button>
+            <button class="slot-btn" data-time="05:00 PM">🕔 17:00</button>
+          </div>
+        </div>
 
-      <div class="slots">
-        <div class="slot">🕘 09:00</div>
-        <div class="slot">🕙 10:00</div>
-        <div class="slot">🕚 11:00</div>
-        <div class="slot">🕑 14:00</div>
-        <div class="slot">🕒 15:00</div>
-        <div class="slot">🕓 16:00</div>
-      </div>
+        <button class="btn btn-primary btn-lg" id="addAvailBtn" style="width:100%">
+          <span id="addAvailText">＋ Add Availability</span>
+          <div class="spinner spinner-sm" id="addAvailSpinner" style="display:none;border-top-color:#fff;border-color:rgba(255,255,255,0.3);"></div>
+        </button>
 
-      <button class="primary-btn">＋ Add Availability</button>
+        <!-- My Availability List -->
+        <div class="avail-section">
+          <h3>📋 Your Available Slots</h3>
+          <div id="availList">
+            <p class="text-muted">No slots set yet</p>
+          </div>
+        </div>
+      </section>
 
-      <hr>
+      <!-- RIGHT: Appointment Requests -->
+      <section class="glass-card animate-fadeInUp delay-1">
+        <div class="card-header">
+          <h2>📨 Appointment Requests</h2>
+          <p class="card-sub">Manage student appointment requests</p>
+        </div>
 
-      <h3>Your Available Slots</h3>
-      <p class="muted">No available slots set</p>
-    </section>
+        <div id="requestsContainer">
+          <div class="empty-state">
+            <div class="empty-icon">📅</div>
+            <h3>No pending requests</h3>
+            <p>New appointment requests will appear here</p>
+          </div>
+        </div>
+      </section>
 
-    <!-- Right Card -->
-    <section class="card">
-      <h2>Appointment Requests</h2>
-      <p class="sub">Manage student appointment requests</p>
-
-      <div class="empty-requests">
-        <div class="calendar-icon">📅</div>
-        <h3>No pending requests</h3>
-        <p>New appointment requests will appear here</p>
-      </div>
-    </section>
-
+    </div>
   </main>
 
-  <script src="teacher-dashboard.js"></script>
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script type="module" src="teacher-dashboard.js"></script>
 </body>
 </html>

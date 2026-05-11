@@ -1,140 +1,149 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+/* ============================================
+   REGISTER.CSS — Re-uses login.css auth styles
+   ============================================ */
+
+/* Auth Background */
+.auth-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
 }
 
-body {
-  min-height: 100vh;
-  background: linear-gradient(180deg, #eef2ff, #fdf2f8);
+.auth-orb-1 {
+  width: 500px;
+  height: 500px;
+  background: #a855f7;
+  top: -150px;
+  left: -100px;
+  animation: float 8s ease-in-out infinite;
 }
 
-/* Back */
+.auth-orb-2 {
+  width: 400px;
+  height: 400px;
+  background: #6366f1;
+  bottom: -100px;
+  right: -100px;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+/* Back Link */
 .back-link {
-  position: absolute;
-  top: 30px;
-  left: 40px;
-  text-decoration: none;
-  color: #374151;
+  position: fixed;
+  top: 28px;
+  left: 32px;
   font-weight: 500;
+  font-size: 14px;
+  color: var(--text-secondary);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
 }
 
-/* Center */
-.register-wrapper {
+.back-link:hover {
+  color: var(--primary);
+  transform: translateX(-2px);
+}
+
+/* Wrapper */
+.auth-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 24px;
+  position: relative;
+  z-index: 1;
 }
 
 /* Card */
-.register-card {
-  background: #fff;
-  width: 460px;
-  padding: 40px;
-  border-radius: 24px;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.12);
-}
-
-/* Icon */
-.icon-box {
-  width: 64px;
-  height: 64px;
-  background: linear-gradient(135deg, #2563eb, #9333ea);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  color: #fff;
-  margin: auto;
-}
-
-/* Headings */
-.register-card h1 {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 28px;
-  color: #4f46e5;
-}
-
-.subtitle {
-  text-align: center;
-  color: #6b7280;
-  margin: 8px 0 28px;
-}
-
-/* Labels */
-label {
-  font-size: 14px;
-  font-weight: 500;
-}
-
-/* Inputs */
-.input-box {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #f3f4f6;
-  padding: 12px 14px;
-  border-radius: 10px;
-  margin: 8px 0 18px;
-}
-
-.input-box input {
-  border: none;
-  outline: none;
-  background: transparent;
+.auth-card {
+  background: var(--bg-card);
   width: 100%;
-  font-size: 14px;
+  max-width: 480px;
+  padding: 40px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(8px);
 }
 
-/* Role */
+.auth-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.auth-card h1 {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 800;
+  margin-top: 16px;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin: 6px 0 28px;
+}
+
+/* Role Selector */
 .role-select {
   display: flex;
-  gap: 12px;
-  margin: 10px 0 25px;
+  gap: 10px;
 }
 
-.role {
+.role-btn {
   flex: 1;
   padding: 12px;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  background: #fff;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border);
+  background: var(--bg-input);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
   font-weight: 600;
+  color: var(--text-secondary);
   cursor: pointer;
+  transition: all var(--transition-normal);
+  text-align: center;
 }
 
-.role.active {
-  border: 2px solid #2563eb;
-  background: #eef2ff;
-  color: #2563eb;
+.role-btn:hover {
+  border-color: var(--primary-light);
+  color: var(--primary);
 }
 
-/* Button */
-.register-btn {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #fff;
-  cursor: pointer;
-  background: linear-gradient(90deg, #2563eb, #9333ea);
+.role-btn.active {
+  border-color: var(--primary);
+  background: var(--primary-glow);
+  color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
 }
 
 /* Footer */
-.login-text {
-  margin-top: 18px;
+.auth-footer {
+  margin-top: 24px;
   text-align: center;
   font-size: 14px;
+  color: var(--text-secondary);
 }
 
-.login-text a {
-  color: #2563eb;
-  text-decoration: none;
+.auth-footer a {
   font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .auth-card { padding: 28px 20px; }
+  .back-link { top: 16px; left: 16px; }
 }
