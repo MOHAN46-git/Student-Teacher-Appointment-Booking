@@ -9,12 +9,12 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/12.11.0/firebas
 
 // Config
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.firebasestorage.app",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyBlHSL5ZaVrA2tq5MJ_zmxmj3B_34yCuak",
+  authDomain: "stab-v2-4506.firebaseapp.com",
+  projectId: "stab-v2-4506",
+  storageBucket: "stab-v2-4506.firebasestorage.app",
+  messagingSenderId: "735500505050",
+  appId: "1:735500505050:web:d2dee162b77e5c51f93ae3"
 };
 
 // Init
